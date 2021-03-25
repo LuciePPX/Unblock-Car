@@ -1,0 +1,123 @@
+
+#__________________________Projet Python unblockFarmer______________
+
+
+# _______________Importations _____________________
+
+from tkinter import*
+from random import *
+
+#_________________Fonction utilisées_______________
+
+#code RGB to hexadecimal
+def rgb(r,g,b):
+    return "#%.02x" %r + "%.02x" %g + "%.02x" %b
+
+def detruire():
+    fenetre.destroy()
+
+def detruire2():
+    fenetre_choix.destroy()
+    Choix()
+
+
+#________________________________________Instructions_______________________________________________________
+
+#___________________________MENU_________________
+
+# _________affichage___________
+
+fenetre = Tk()
+fenetre.title("Unblock Sea")
+
+ht= fenetre.winfo_screenheight()-100 # fentre dimension auto 
+wh= fenetre.winfo_screenwidth()-50
+
+fenetre.geometry('%dx%d+%d+%d' % (wh,ht,10,10)) # placer la fenetre visible sur la bureau
+
+menu= Canvas(fenetre, width=wh, height=ht)
+menu.pack() # ajout du canvas au menu
+
+#_____________image ________________
+
+fond_menu = PhotoImage(file="menu2.png") # importer l'image
+menu.create_image(wh/2,ht/2, image=fond_menu) # ajouter au menu /2 pour centrer 
+ 
+# ____________texte________________
+
+presentation=Label(fenetre, text="Hey toi bienvenue dans unblock Sea,",font=('courrier 15 bold' ), bg=rgb(81,146,164))
+circu=Label(fenetre, text=" le circulation dans l'océan est vraiment compliquée ! " ,font=('courrier 15 bold' ), bg=rgb(81,146,164))
+oursin=Label(fenetre, text="tu veux bien aider Louis l'oursin à trouver son chemin ? ",font=('courrier 15 bold' ), bg=rgb(81,146,164))
+
+presentation.place(x=100,y=ht/2-200)
+circu.place(x=100,y=ht/2-150)
+oursin.place(x=100,y=ht/2-100)
+
+#___________Bouton_______________
+
+btn = Button(fenetre, text="C'est parti !", font=('Arial 15 bold'), command=detruire ,bg=rgb(81,146,164))
+btn.place(x=200,y=ht/2+200)
+
+menu.mainloop() # lancement fenêtre 
+
+#______________________Choix__________________________
+
+#__________affichage_____________
+
+fenetre_choix = Tk()
+fenetre_choix.title("Unblock sea")
+
+ht= fenetre_choix.winfo_screenheight()-100 # fentre dimension auto 
+wh= fenetre_choix.winfo_screenwidth()-50
+
+fenetre_choix.geometry('%dx%d+%d+%d' % (wh,ht,10,10)) # placer la fenetre visible sur la bureau
+
+choix= Canvas(fenetre_choix, width=wh, height=ht)
+choix.pack() # ajout du canvas à la fenêtre
+
+#___________Fond____________________
+
+fond_choix = PhotoImage(file="choix.png") # importer l'image
+choix.create_image(wh/2,ht/2, image=fond_choix) # ajouter au menu /2 pour centrer 
+    
+#____________ texte________________
+
+niveau=Label(fenetre_choix, text="Choisis ton niveau ! ",font=('courrier 50 bold' ), bg="white")
+niveau.place(x=wh/2-100,y=100)
+
+#__________bouton __________
+
+suivant = Button(fenetre_choix, text="En route ", font=('Arial 15 bold'), command=detruire2 ,bg="white")
+suivant.place(x=wh/2-100,y=200)
+
+choix.mainloop()
+#______________________________Jeu__________________________
+
+#_______affichage_____________
+fenetre_jeu = Tk()
+fenetre_jeu.title("Unblock Sea")
+
+ht= fenetre_jeu.winfo_screenheight()-100 # fentre dimension auto 
+wh= fenetre_jeu.winfo_screenwidth()-50
+
+fenetre_jeu.geometry('%dx%d+%d+%d' % (wh,ht,10,10)) # placer la fenetre visible sur la bureau
+
+jeu= Canvas(fenetre_jeu, width=wh, height=ht)
+jeu.pack() # ajout du canvas au menu
+
+#______fond______________
+
+font = PhotoImage(file="jeu.png") # importer l'image
+jeu.create_image(wh/2,ht/2, image=font) # ajouter au menu /2 pour centrer 
+
+#_________afficher animaux___________
+animaux=["meduse.png","orque.png","poisson.png","crabe.png"]
+
+
+#===========Affiche 1 seul==============
+for pet in animaux:
+    ani = PhotoImage(file=pet) # importer l'image
+    jeu.create_image(randrange(wh),randrange(ht), image=ani) # ajouter au jeu au hasard
+
+jeu.mainloop()
+
